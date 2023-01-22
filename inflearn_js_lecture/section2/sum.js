@@ -42,17 +42,19 @@ function solution(N, arr) {
     if (colSum > colMax) colMax = colSum;
   }
 
-  if (rowMax >= colMax) {
-    answer = rowMax;
-  } else {
-    answer = colMax;
-  }
+  answer = Math.max(rowMax, colMax, diagonalMax1, diagonalMax2);
 
-  if (diagonalMax1 >= diagonalMax2) {
-    if (answer < diagonalMax1) answer = diagonalMax1;
-  } else {
-    if (answer < diagonalMax2) answer = diagonalMax2;
-  }
+  // if (rowMax >= colMax) {
+  //   answer = rowMax;
+  // } else {
+  //   answer = colMax;
+  // }
+
+  // if (diagonalMax1 >= diagonalMax2) {
+  //   if (answer < diagonalMax1) answer = diagonalMax1;
+  // } else {
+  //   if (answer < diagonalMax2) answer = diagonalMax2;
+  // }
 
   return answer;
 }
@@ -60,3 +62,5 @@ function solution(N, arr) {
 console.log(solution(5, array)); // 155
 
 // 선생님 풀이
+
+// Math.max 함수를 활용해서 값을 구하셨음
