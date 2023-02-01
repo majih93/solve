@@ -55,3 +55,33 @@ function recursivePow(x, n) {
 
 // JavaScript 엔진은 최대 재귀 깊이를 제한한다.
 // 만개 정도는 확실히 허용되지만, 엔진에 따라 차이가 조금 존재하고 십만까지는 대부분의 엔진이 다루지 못함
+
+//---------------------------------------------------------------------------------------------------------------------
+
+// 조금 더 이해하기 위해서 유튜브 추가로 시청함
+
+// 마트료쉬카를 예시로 생각해보자.
+
+// sudo code
+
+// function processDoll(doll) {
+//   if (lastDoll) {
+//     return "존맛탱구리~~";
+//   } else {
+//     processDoll(the smaller dol)
+//   }
+// }
+
+// factorial 을 재귀함수로 생각해보자.
+
+function factorial(n) {
+  if (n === 1) {
+    return n;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+console.log(factorial(4)); // 24 = 1* 2* 3* 4
+// 포인트는 함수를 다른 인자로 재호출 한다는점과
+// 종료 조건이 있다는 점
