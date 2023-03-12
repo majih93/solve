@@ -31,3 +31,5 @@ function solution(str) {
 }
 
 console.log(solution("(()(()))(()")); // NO
+
+// 선생님 풀이
