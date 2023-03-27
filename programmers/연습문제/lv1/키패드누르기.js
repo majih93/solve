@@ -43,6 +43,7 @@ function solution(numbers, hand) {
     // 이번에 누르려는 키 위치
     let nextKeyPosition = keypadMap.get(nextKey);
 
+    // 거리는 x좌표와 y좌표 각각의 차이의 절대값을 더한것과 같음
     // 왼손으로부터 거리
     let leftDistance =
       Math.abs(leftPosition[0] - nextKeyPosition[0]) +
