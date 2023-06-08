@@ -89,6 +89,11 @@ function solution_2(coinArr, goalMoney) {
     // 조기 종료 조건
     // 목표 금액 초과한 경우 더이상 처리할 필요가 없음
     if (sum > goalMoney) return;
+
+    // 조기 종료 조건이 하나 더있다!!!
+    // 동전 갯수가 최소 갯수보다 많아진 경우도 당연히 더이상 탐색할 필요가 없음
+    if (L > answer) return;
+
     // sum이 목표 금액과 동일한 경우, 배열의 동전 갯수 합을 answer 와 비교해서 더 작은 경우 교체한다.
     if (sum === goalMoney) {
       answer = Math.min(answer, L);
