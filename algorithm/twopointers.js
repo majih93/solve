@@ -262,3 +262,39 @@ console.log(twoSumSorted([1, 4, 5, 7, 11, 15], 15)); // [1,4]
 // 선생님이랑 내가 문제 해석을 조금 다르게 했음
 // 선생님 식으로 풀이해서 내가 생각한 답을 얻으려면,
 // 왼쪽 포인터 고정, 우측 포인터 -- 해가면서 처리했을 듯
+
+// two pointer 복습 위한 추가 문제 풀이
+
+// 주어진 배열에 대해서 부분 배열의 합이 특정 숫자가 되는 케이스가 몇 번인지 구하기
+
+// 이중 for문으로 풀게 되면, 시간복잡도가 O(n^2) 가 되므로 오래걸린다. -> 이를 보완해줄 수 있는 테크닉
+const twoPointer2 = (arr, n) => {
+  let answer = 0;
+
+  let tempSum = arr[0]; // 초기값을 첫 번째 요소로 초기화
+
+  let start = 0;
+  let end = 0;
+
+  while (end < arr.length) {
+    if (tempSum < n) {
+      end++;
+      tempSum += arr[end];
+    }
+
+    if (tempSum > n) {
+      tempSum -= arr[start];
+      start++;
+    }
+
+    if (tempSum === n) {
+      answer++;
+      tempSum -= arr[start];
+      start++;
+    }
+  }
+
+  return answer;
+};
+
+console.log(twoPointer2([1, 3, 2, 2, 5, 7, 2, 6], 9));
