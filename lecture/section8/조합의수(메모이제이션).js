@@ -53,7 +53,6 @@ function solution_usingMap(n, r) {
 
 function solution_using2DArray(n, r) {
   let answer;
-
   // 저장할 2차원 배열 생성
   // 행의 개수 = 표본 개수
   // 열의 개수 = 뽑은 개수
