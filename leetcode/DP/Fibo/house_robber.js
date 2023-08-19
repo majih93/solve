@@ -9,6 +9,8 @@ function solution(nums) {
     return Math.max(nums[0], nums[1]);
   }
 
+  // TODO -> 이 조건 분기도 개선할 수 있다는 점
+
   const dy = Array(nums.length).fill(0);
 
   // 첫 두개의 숫자는 해당 숫자가 털 수 있는 최대 금액
