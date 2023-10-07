@@ -69,3 +69,46 @@ var lemonadeChange = function (bills) {
 
 // const answer = lemonadeChange([5, 5, 10, 10, 20]);
 const answer2 = lemonadeChange([5, 5, 5, 5, 10, 5, 20, 10, 5, 5]);
+
+// 위 답으로 하면 시간 / 공간 둘 다 효율적이지는 않다. 개선점을 찾아보자.
+
+const improvedAnswer1 = (bills) => {
+  // 안되는 조건 조건 자체는 동일함
+  if (bills[0] !== 5) return false;
+  if (bills[1] === 20) return false;
+
+  let fiveBillCount = 0;
+  let tenBillCount = 0;
+
+  // 따로 함수 선언하지 않고 로직 처리
+
+  for (let bill of bills) {
+    // 5인 경우
+    if (bill === 5) fiveBillCount++;
+    if (bill === 10) {
+      if (fiveBillCount === 0) return false;
+      fiveBillCount--;
+      tenBillCount++;
+    }
+    if (bill === 20) {
+      // 5달러 및 10 달러가 하나씩 이상 있는 경우
+      if (fiveBillCount >= 1 && tenBillCount >= 1) {
+        fiveBillCount--;
+        tenBillCount--;
+        continue;
+      }
+
+      // 5달러 3개 있는 경우
+      if (fiveBillCount >= 3) {
+        fiveBillCount -= 3;
+        continue;
+      }
+
+      return false;
+    }
+  }
+
+  return true;
+};
+
+// 공간 효율이 왜 낮을까.. 뭐가 문제지
