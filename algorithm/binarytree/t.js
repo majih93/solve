@@ -123,7 +123,7 @@ const lecture_version = (root) => {
   return [root.val, ...leftValues, ...rightValues];
 };
 
-const lecture_result = lecture_version(a);
+// const lecture_result = lecture_version(a);
 
 // 와 근데 implementation 차이가 엄청 나네..
 
@@ -143,3 +143,44 @@ const lecture_result = lecture_version(a);
 // 같은 로직으로 [c, f] 반환
 
 // [a, ...[b,d,e], ...[c,f]] 형태로 처리
+
+//---------------
+
+// Breath first 탐색
+// 어떻게 horizontal 한 탐색을 먼저 수행한 후에 밑으로 가서 수행할 수 있을까?
+
+// 먼저 한 번 로직을 세워서 구현해보고 강의를 들어보자.
+
+// a -> b -> c -> d -> e -> f 순으로 탐색이 되어야 하니까....
+
+// 일시적으로 저장하고 다음에 iterate 하는 방식은, 자료의 개수에 비례해서 공간복잡도가 커짐
+
+// 흠 어떻게 재귀적으로 수행할 방법이 없나?
+
+// 노드에 대해서 우선 자식들을 쭉탐색한 후에, 다음 자식으로 넘어가야 하는데...
+
+// iterative solution
+const bfs = (root) => {
+  // logic
+
+  if (root === null) return [];
+
+  const values = [];
+  // 큐를 이용해 풀이
+  const queue = [root];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+
+    values.push(current.val);
+
+    if (current.left !== null) queue.push(current.left);
+    if (current.right !== null) queue.push(current.right);
+  }
+
+  return values;
+};
+
+const bfs_result = bfs(a);
+
+console.log(bfs_result);
