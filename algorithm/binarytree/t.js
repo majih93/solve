@@ -183,4 +183,59 @@ const bfs = (root) => {
 
 const bfs_result = bfs(a);
 
-console.log(bfs_result);
+// console.log(bfs_result);
+
+// =---- 실제 문제 풀이에 적용
+
+// 주어진 값이 이진트리 내에 존재하는지 확인하는 문제
+
+const checkIsValueInBinaryTree = (value, root) => {
+  // bfs 방식으로 풀이
+
+  if (root === null) return [];
+
+  const queue = [root];
+
+  while (queue.length > 0) {
+    // value 와 노드의 값이 일치하는지 확인 필요
+    const currentNode = queue.shift(); // queue이므로 앞에서 out
+
+    if (currentNode.val === value) return true;
+
+    if (currentNode.left) queue.push(currentNode.left);
+    if (currentNode.right) queue.push(currentNode.right);
+  }
+
+  return false;
+};
+
+const isValueInTree = checkIsValueInBinaryTree("j", a);
+const isValueInTree2 = checkIsValueInBinaryTree("e", a);
+const isValueInTree3 = checkIsValueInBinaryTree("b", a);
+
+// console.log(isValueInTree); // false
+// console.log(isValueInTree2); // true
+// console.log(isValueInTree3); // true
+
+// ----- 만약에 위 문제를 재귀적으로 풀어내려면 어떻게 해야되는지?
+
+const checkRecursively = (root, target) => {
+  // 음....
+  console.log(root?.val, null);
+  if (root === null) {
+    // node 가 없는 경우 false 를 return 해서 비교해서 false 와 true 가 return 되면서 로직이 collapse 되도록 하는 것
+
+    return false;
+  }
+  if (root.val === target) return true;
+
+  return (
+    checkRecursively(root.left, target) || checkRecursively(root.right, target)
+  );
+};
+
+const isValueInTree4 = checkRecursively(a, "f");
+
+console.log(isValueInTree4);
+
+// 원리가 뭘까? 비교하지 않으면서도 처리되는 이유
