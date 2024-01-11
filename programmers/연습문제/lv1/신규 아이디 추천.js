@@ -60,3 +60,17 @@ function solution(new_id) {
 }
 
 solution("z-+.^.");
+
+// 무식하게 풀었는데, 정작 문제 출제의도는 정규식을 활용하는 것이였던 것 같음
+
+const solution = (new_id) => {
+  const id = new_id
+    .toLowerCase() // Step 1: Convert to lowercase
+    .replace(/[^\w\d-_.]/g, "") // Step 2: Remove characters other than alphanumeric, hyphen, underscore, and dot
+    .replace(/\.{2,}/g, ".") // Step 3: Replace consecutive dots with a single dot
+    .replace(/^\.|\.$/g, "") // Step 4: Remove leading and trailing dots
+    .padEnd(1, "a") // Step 5: If the string is empty, pad it with a single 'a'
+    .slice(0, 15) // Step 6: Keep only the first 15 characters
+    .replace(/^\.|\.$/g, ""); // Step 7: Remove leading and trailing dots again
+  return id.padEnd(3, id[id.length - 1]); // Step 8: If the resulting string is less than 3 characters, pad it with the last character
+};
