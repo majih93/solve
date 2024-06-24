@@ -1,32 +1,28 @@
-// 58. Length of last word.
+// 58. Length of Last Word
 
-// 뒤에서부터 " " 가 나올때까지 iterate 하는 식으로 풀면 되지 않을까 하는 생각이 들었음
+// 내 풀이
+var lengthOfLastWord = function (s) {
+  const trimmedS = s.trim();
+  const sArr = trimmedS.split(" ");
 
-// 문제를 제대로 읽지 않고 풀었음. -> 아주 나쁜 버릇이다. 문제 및 주어진 test case 는 꼼꼼하게 체크한 후에 문제를 풀도록 하자.
+  return sArr[sArr.length - 1].length;
+};
 
-// whitespace 를 처리할 방법에 대해서 검색해본 결과 trim() 이라는 함수 알게 됨
-// 양쪽 끝에 whitespace 를 제거해준다.
+// 다른 사람의 풀이를 보면서, 굳이 split()할 필요 없이 trim한 string을 iterate하면 된다는 것을 알게 되었음.
+// 실행 시간을 비교해보자.
 
-// 다른 사람 풀이를 보니, lastIndexOf 라는 함수도 있네?!
-// searches this string and returns the index of the last occurrence of the specified substring.
+// 실행 시간 자체는 차이가 별로 안난다.
+// 이상하네 split()하는 거 대비 그냥 뒤에서부터 조건부로 for loop을 통해서 붙이는게 더 빠를 것 같았는데.
+// 이유 - split()하는 것은 String이 길어질수록 비싼 operation 이라고 생각함.
 
-function solution(s) {
-  let answer = 0;
-  // iterate string from behind
-  const trimmedString = s.trim();
+// 시간이 빠른 코드를 내 환경에서 돌려보니 실행 시간이 환경에 종속적인 것도 있는 것 같다.
 
-  let curIndex = trimmedString.length - 1;
+// at() 메서드.
+// split(" ") 에 메서드 체이닝을 해서 해결할 수 없을까 했는데 at함수로 가능하다.
+var lengthOfLastWord_one_liner = function (s) {
+  return s.trimEnd().split(" ").at(-1).length;
+};
 
-  while (true) {
-    if (trimmedString[curIndex] !== " " && curIndex > -1) {
-      answer++;
-      curIndex--;
-    } else {
-      break;
-    }
-  }
+const arr = [1, 2, 3, 4, 5];
 
-  return answer;
-}
-
-console.log(solution("hello world   "));
+console.log(arr.at(-1)); // 5
